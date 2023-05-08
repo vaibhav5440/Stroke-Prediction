@@ -1,0 +1,244 @@
+---
+title: "FINAL PROJECT"
+author: "VAIBHAV AMITBHAI PATEL"
+date: "12-08-2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+--------------------------------------------------
+                **IMPORT LIBRARY**
+--------------------------------------------------
+```{r}
+library(tidyverse)
+```
+
+
+
+
+
+
+```{r}
+healthcaredatasetstrokedata <- read.csv("C:/Users/Admin/Desktop/DAB501/Data/healthcaredatasetstrokedata.csv")
+```
+
+
+
+----------------------------------------------------------------------------------
+                      **QUESTIONS & ANSWERS**
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------
+**Question 1: What is the highest value of average level of glucose in health care dataset stroke.?**
+----------------------------------------------------------------------------------------
+
+
+
+```{r}
+
+gender <- healthcaredatasetstrokedata   %>% group_by(gender) %>% arrange(desc(avg_glucose_level))
+glimpse(gender)
+
+```
+
+```{r}
+ggplot(gender,aes(x = avg_glucose_level, y = gender))+geom_boxplot(aes(fill=gender),alpha=50)+labs(title = "Gender & there Average Glucose Level",x="Average Glucose Level",y="Gender",fill="gender")+theme_classic()
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+*ANS:- The above analysis shows that Male people are highest in number of Average Glucose Level rather than Female & Other gender type.*
+
+
+
+-----------------------------------------------------------------------
+**Question 2: Create a plot of single categorical variable.?**
+-----------------------------------------------------------------------
+
+```{r}
+ggplot(healthcaredatasetstrokedata, aes(x="", y=smoking_status, fill=smoking_status)) + geom_bar(stat="identity", width=1) + coord_polar("y", start=0) + theme_void()
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+*ANS- Here, this plot illustrate the status of smoking by occupying the position of four smoking status.*
+
+----------------------------------------------------------------------------
+**Question 3: Create a plot of heart disease & Ever married?**
+----------------------------------------------------------------------------
+
+
+```{r}
+ggplot(healthcaredatasetstrokedata, aes(x = heart_disease, fill = ever_married)) + geom_bar()
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+*ANS:- Here, the analysis shows the count of heart disease per ever married person*
+
+
+
+----------------------------------------------------------------------------------------
+**Question 4: Create an appropriate plot to visualize the distribution of numeric variable.?**
+----------------------------------------------------------------------------------------
+
+
+
+```{r}
+ggplot(healthcaredatasetstrokedata, aes(avg_glucose_level))+geom_histogram(color="black",fill="lightblue",bins = 30)+labs(title = "The amout of Average Glucose level", x="Average Glucose Level")+theme_dark()
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+*ANS:- The above plot consist of ability to show the count of various average glucose level.*
+
+
+
+
+----------------------------------------------------------------------------------------
+**Question 5: Create an appropriate plot to visualize the proportion of categorical variable.?**
+----------------------------------------------------------------------------------------
+
+
+
+```{r}
+ggplot(healthcaredatasetstrokedata,aes(work_type,fill=work_type))+ geom_bar(aes(y=(..count..)/sum(..count..)))+scale_y_continuous(labels = scales::percent)+labs(title = "Various types of working sector", subtitle = "Job occupied by different age of people in percentage.",x="Work Type",y="Percentage")
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+
+
+
+*ANS:- The above plot shows the different work options done by various age of people in percentage.*
+
+
+
+
+----------------------------------------------------------------------------------------
+**Question 6: Create an appropriate plot to visualize the relationship between the two numeric variables.?**
+----------------------------------------------------------------------------------------
+
+
+
+```{r}
+ggplot(healthcaredatasetstrokedata, aes(age,hypertension))+geom_point(aes(color=hypertension),alpha=0.5)+labs(title = "Hypertension of particular age people", x="Age",y="Hypertension",color="Hypertension")+theme_light()
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+*ANS:- The above chart shows the analysis of Hypertension count of specific age people in health care stroke data set.*
+
+
+
+----------------------------------------------------------------------------------------
+**Question 7: Create an appropriate plot to visualize the relationship between the numeric and categorical variables.?**
+----------------------------------------------------------------------------------------
+
+
+
+```{r}
+ggplot(healthcaredatasetstrokedata, aes(avg_glucose_level, work_type,fill=work_type))+geom_violin(size=1)+labs(title = "Average Glucose Level of Working type.", x="Average Glucose Level", y="Work Type",fill="Work Type")+theme_bw()
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+
+
+
+*ANS:- The above plot contains information about average glucose level of various working type people.*
+
+
+
+----------------------------------------------------------------------------------
+**Question 8: Choose and calculate an appropriate measure of central tendency.**
+----------------------------------------------------------------------------------
+
+
+```{r}
+mean(healthcaredatasetstrokedata$heart_disease)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+*ANS:- The central tendency of heart_disease is 0.05401174*
+
+
+------------------------------------------------------------------------------------
+**Question 9: Choose an appropriate method to calculate spread of any variable.?**
+------------------------------------------------------------------------------------
+
+
+
+```{r}
+sd(healthcaredatasetstrokedata$age)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+*ANS:- The standard deviation of age is 22.61265*
+
+
+
+
+
+
+
+----------------------------------------------------------------------
+**Question 10: How to find unique values of any variable.?**
+-----------------------------------------------------------------------
+
+
+
+```{r}
+unique(healthcaredatasetstrokedata$stroke)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+*ANS:- The unique value of stroke is 1 or 0*
+
+
+
+
+
+
+----------------------------------------------------------------------
+                      ***CONCLUSION***
+----------------------------------------------------------------------
+                                
+                                
+                              
+*1) To recapitulate, in this project i have opted data set based on the health care stroke data.Here, data set consist of 12 different variables and more than 5110 observations. Moreover, the questions that I created shows the values of hypertension and heart disease along with the, average glucose level and stroke number.*
+
+*2) According to this, I have made 10 various question and given the proper answer by generating the different plots like numerical & categorical. Moreover, this data consist of both numerical and categorical data. As, it is required to have various variety of data to clarify any data set in proper manner.*
+
+*3) Additionally, to do the analysis, I had used various types of plots such as data transformations and data wrangling as everyone knoes, plots are the best of visualization to convey motive of any data set. Further, I have also used various statistical methods like mean, mode, and standard deviation.*
+
+*4) Furthermore, I had also done the data cleaning to remove the NA values from the dataset as it remove some of the rows from the dataset.*
